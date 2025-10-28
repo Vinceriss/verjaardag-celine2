@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Je cadeau 🎁</title>
+  <style>
+    body {
+      margin: 0;
+      overflow-y: auto; /* Scroll verticale inhoud */
+      overflow-x: hidden; /* Geen horizontale scroll */
+      background: #ffe6f2;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    /* Album verstopt in het begin */
+    #albumContainer {
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      position: relative;
+      z-index: 0;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    h1 {
+      color: #ff4d8d;
+      margin-top: 30px;
+    }
+
+    #slider {
+      margin: 80px auto;
+      width: 70%;
+      max-width: 700px;
+      border-radius: 12px;
+      overflow: scroll;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    #slider img {
+      width: 100%;
+      display: none;
+    }
+
+    #slider img.active {
+      display: block;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 15px;
+      border: none;
+      background: #ff4d8d;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Confetti -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Fotoalbum -->
+  <div id="albumContainer">
+    <h1>Voor jou Celine</h1>
+    <p>Een paar mooie momenten x</p>
+
+    <div id="slider">
+      <img src="images/1.jpg" class="active">
+      <img src="images/2.jpg">
+      <img src="images/3.jpg">
+      <img src="images/4.jpg">
+      <img src="images/5.jpg">
+      <img src="images/6.jpg" >
+      <img src="images/7.jpg">
+      <img src="images/8.jpg">
+      <img src="images/9.jpg">
+      <img src="images/10.jpg">
+      <img src="images/11.jpg" >
+      <img src="images/12.jpg">
+      <img src="images/13.jpg">
+      <img src="images/14.jpg">
+      <img src="images/15.jpg">
+    </div>
+
+    <button id="prev">Vorige</button>
+    <button id="next">Volgende</button>
+  </div>
+
+  <script src="confetti.js"></script>
+  <script>
+    // Start confetti
+    startConfetti();
+
+    // Na 3 seconden album tonen + confetti weg
+    setTimeout(() => {
+      document.getElementById("albumContainer").style.opacity = 1;
+      stopConfetti();
+      document.getElementById("confettiCanvas").style.display = "none"; // Verwijder confetti
+    }, 3000);
+
+    // Slider
+    const images = document.querySelectorAll('#slider img');
+    let current = 0;
+
+    document.getElementById('next').onclick = () => {
+      images[current].classList.remove('active');
+      current = (current + 1) % images.length;
+      images[current].classList.add('active');
+    };
+
+    document.getElementById('prev').onclick = () => {
+      images[current].classList.remove('active');
+      current = (current - 1 + images.length) % images.length;
+      images[current].classList.add('active');
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gelukkige Verjaardag Celine! 🎉🎉🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- p5.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+
+  <!-- NerdAlert Overlay -->
+  <div id="nerdOverlay" class="overlay show">
+    <div class="overlay-panel">
+      <div class="scanline"></div>
+      <h2 class="glitch" data-text="NERDALERT">🚨 NERDALERT 🚨</h2>
+      <p class="overlay-text">
+        <strong>PAS OP!</strong><br/>
+        Je staat op het punt de <strong>NERD ZONE</strong> te betreden.<br/>
+        Ben je hier wel klaar voor?
+      </p>
+      <div class="overlay-actions">
+        <button class="overlay-btn" id="btnA">
+          JAAA, tuurlijk ik ben Celine Claes, wifey van Vincent #nerd Claes 🤓
+        </button>
+        <button class="overlay-btn" id="btnB">
+          JAAA take me there now daddy Vincent 🥵
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Bar (altijd zichtbaar) -->
+  <header class="topbar">
+    <div class="title">
+      <h1>Gelukkige Verjaardag Celine!! 🎉🎉🎉</h1>
+      <p>Maak iets leuks op het canvas hieronder en stuur er mij een foto van!</p>
+      <p>P.S.: dat heb ik geleerd in mijn webvisualisatie workshop x</p>
+    </div>
+    <div class="controls">
+      <label for="colorPicker">Kleur</label>
+      <input type="color" id="colorPicker" value="#251ff7" />
+
+      <button id="resetBtn" class="btn danger">Reset</button>
+      <button id="albumBtn" class="btn primary">Klik hier om je cadeau te openen 🎁</button>
+      
+    </div>
+  </header>
+
+  <!-- p5 canvas komt erachter te liggen -->
+  <main>
+    <!-- leeg, canvas wordt door p5 toegevoegd -->
+  </main>
+
+  <script src="sketch.js"></script>
+  <script>
+    // NerdOverlay handlers (glitch + fade)
+    const overlay = document.getElementById('nerdOverlay');
+    const btnA = document.getElementById('btnA');
+    const btnB = document.getElementById('btnB');
+    const closeOverlay = () => {
+      overlay.classList.add('hide'); // start fade-out
+      setTimeout(() => overlay.remove(), 600); // na animatie echt weg
+    };
+    btnA.addEventListener('click', closeOverlay);
+    btnB.addEventListener('click', closeOverlay);
+
+    // Nav naar album
+    document.getElementById('albumBtn').addEventListener('click', () => {
+      window.location.href = 'cadeau.html';
+    });
+  </script>
+</body>
+</html>
